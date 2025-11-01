@@ -175,7 +175,7 @@ const EventSchema = new Schema<IEvent>(
 			},
 			enum: {
 				values: ["online", "offline", "hybrid"],
-				message: "Mode must either online, offline, or hybrid.",
+				message: "Mode must be either online, offline, or hybrid.",
 			},
 		},
 		audience: {
