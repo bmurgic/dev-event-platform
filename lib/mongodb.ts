@@ -60,7 +60,7 @@ async function connectDB(): Promise<typeof mongoose> {
 		// Wait for the connection to establish
 		cached.conn = await cached.promise;
 	} catch (error) {
-		//Reset promise on error to allow retry
+		// Reset promise on error to allow retry
 		cached.promise = null;
 		throw error;
 	}
