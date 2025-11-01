@@ -21,7 +21,7 @@ if (!MONGODB_URI) {
 	);
 }
 
-// Initiliaze the cache on the global object to persist accross hot reloads in development
+// Initialize the cache on the global object to persist across hot reloads in development
 const cached: MongooseCache = global.mongoose || {
 	conn: null,
 	promise: null,
