@@ -33,7 +33,7 @@ if (!global.mongoose) {
 
 /**
  * Establishes a connected to MongoDB using Mongoose.
- * Caches the connecttion to prevent multiple connections during development hot reloads.
+ * Caches the connection to prevent multiple connections during development hot reloads.
  * @returns Promise resolving to the Mongoose instance
  */
 async function connectDB(): Promise<typeof mongoose> {
