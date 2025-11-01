@@ -108,7 +108,7 @@ const EventSchema = new Schema<IEvent>(
 				validator: nonEmptyString,
 				message: "Description cannot be empty",
 			},
-			maxLength: [1000, "Over cannot exceed 1000 characters"],
+			maxLength: [1000, "Description cannot exceed 1000 characters"],
 		},
 		overview: {
 			type: String,
