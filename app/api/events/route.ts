@@ -76,8 +76,8 @@ export async function POST(req: NextRequest) {
 		const createdEvent = await Event.create({
 			...event,
 			image: secureURL,
-			tags: tags,
-			agenda: agenda,
+			tags,
+			agenda,
 		});
 
 		return NextResponse.json(
