@@ -14,7 +14,7 @@ export async function getSimilarEventsBySlug(slug: string) {
 		return await Event.find({
 			_id: { $ne: event._id },
 			tags: { $in: event.tags },
-		}).lean();
+		}).limit(5).lean();
 	} catch (e) {
 		return [];
 	}
