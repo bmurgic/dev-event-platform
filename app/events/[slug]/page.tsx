@@ -1,3 +1,4 @@
+import { cacheLife } from "next/cache";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import BookEvent from "@/components/BookEvent";
@@ -47,6 +48,8 @@ export default async function EventDetailsPage({
 }: {
 	params: Promise<{ slug: string }>;
 }) {
+	"use cache";
+	cacheLife("hours");
 	const { slug } = await params;
 	let event: IEvent;
 
@@ -159,7 +162,7 @@ export default async function EventDetailsPage({
 							<p className="text-sm">Be the first to book your spot!</p>
 						)}
 
-						<BookEvent />
+						<BookEvent eventId={event._id} slug={event.slug} />
 					</div>
 				</aside>
 			</div>
