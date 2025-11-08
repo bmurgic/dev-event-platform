@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 // Define the connection cache type
 type MongooseCache = {
 	conn: typeof mongoose | null;
@@ -11,13 +12,6 @@ declare global {
 }
 
 const MONGODB_URI = process.env.MONGODB_URI;
-
-// Validate MongoDB URI exists
-if (!MONGODB_URI) {
-	throw new Error(
-		"Please define the MONGODB_URI environment variable inside .env.local",
-	);
-}
 
 // Initialize the cache on the global object to persist across hot reloads in development
 const cached: MongooseCache = global.mongoose || {
@@ -42,6 +36,13 @@ async function connectDB(): Promise<typeof mongoose> {
 
 	// Return existing connection promise if one is in progress
 	if (!cached.promise) {
+		// Validate MongoDB URI exists
+		if (!MONGODB_URI) {
+			throw new Error(
+				"Please define the MONGODB_URI environment variable inside .env.local",
+			);
+		}
+
 		const options = {
 			bufferCommands: false, // Disable Mongoose buffering
 		};
