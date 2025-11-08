@@ -1,6 +1,4 @@
 import type mongoose from "mongoose";
-import { UnwrapPromise } from "next/dist/lib/coalesced-function";
-
 // Define the connection cache type
 type MongooseCache = {
 	conn: typeof mongoose | null;
