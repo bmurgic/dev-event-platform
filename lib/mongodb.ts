@@ -1,4 +1,4 @@
-import type mongoose from "mongoose";
+import mongoose from "mongoose";
 // Define the connection cache type
 type MongooseCache = {
 	conn: typeof mongoose | null;
