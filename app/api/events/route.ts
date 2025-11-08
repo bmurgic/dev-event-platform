@@ -50,10 +50,16 @@ export async function POST(req: NextRequest) {
 				.end(buffer);
 		});
 
-		// Set the image to this new Cloudinary URL
-		event.image = (uploadResult as { secure_url: string }).secure_url;
+		const tags = JSON.parse(formData.get("tags") as string);
+		const agenda = JSON.parse(formData.get("agenda") as string);
+		const secureURL = (uploadResult as { secure_url: string }).secure_url;
 
-		const createdEvent = await Event.create(event);
+		const createdEvent = await Event.create({
+			...event,
+			image: secureURL,
+			tags: tags,
+			agenda: agenda,
+		});
 
 		return NextResponse.json(
 			{
