@@ -50,8 +50,27 @@ export async function POST(req: NextRequest) {
 				.end(buffer);
 		});
 
-		const tags = JSON.parse(formData.get("tags") as string);
-		const agenda = JSON.parse(formData.get("agenda") as string);
+		let tags, agenda;
+		try {
+			tags = JSON.parse(formData.get("tags") as string);
+		} catch (e) {
+			return NextResponse.json(
+				{
+					message: "Invalid JSON format for tags",
+				},
+				{ status: 400 },
+			);
+		}
+		try {
+			agenda = JSON.parse(formData.get("agenda") as string);
+		} catch (e) {
+			return NextResponse.json(
+				{
+					message: "Invalid JSON format for agenda",
+				},
+				{ status: 400 },
+			);
+		}
 		const secureURL = (uploadResult as { secure_url: string }).secure_url;
 
 		const createdEvent = await Event.create({
